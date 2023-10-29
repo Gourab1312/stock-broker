@@ -64,7 +64,11 @@ const SearchBar = () => {
           value={searchQuery}
           onChange={handleChange}
         />
-        <button type="button" className="pl-2" onClick={handleSearch}>
+        <button
+          type="button"
+          className="pl-2"
+          onClick={() => handleSearch(searchQuery)}
+        >
           <IconSearch />
         </button>
       </div>
