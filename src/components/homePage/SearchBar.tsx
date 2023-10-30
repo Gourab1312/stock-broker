@@ -38,7 +38,7 @@ const SearchBar = () => {
     if (searchQuery) {
       const timeoutId = setTimeout(() => {
         setDebouncedQuery(searchQuery);
-      }, 1000);
+      }, 400);
 
       setTypingTimeout(timeoutId);
     }
@@ -55,7 +55,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="w-full md:w-80 flex flex-col">
+    <div className="w-full md:w-80 flex flex-col relative">
       <div className="search-bar bg-gray-200 rounded-full flex items-center px-8 py-3 flex justify-between items-center w-full">
         <input
           type="text"
@@ -74,18 +74,15 @@ const SearchBar = () => {
       </div>
       {error && <div>Error: {error}</div>}
       {searchResults.length > 0 && (
-        <div className="bg-gray-100 flex-col w-full px-4 py-2 rounded-b-lg">
+        <div className="bg-gray-100 flex-col w-full px-4 py-2 rounded-b-lg absolute left-0 right-0 top-107% w-full">
           {searchResults.map((result) => (
             <div
-              className="font-regular text-base px-2 py-2 border border-b border-gray-300"
+              className="font-regular text-base px-2 py-2 border-b border-gray-300"
               key={result["1. symbol"]}
             >
               <Link href={`/stocks/${result["1. symbol"]}`}>
-                <a>
-                  <p>{result["1. symbol"]}</p>
-                </a>
+                <p>{result["1. symbol"]}</p>
               </Link>
-              <hr />
             </div>
           ))}
         </div>

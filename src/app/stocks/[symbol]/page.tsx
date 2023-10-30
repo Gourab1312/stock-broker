@@ -44,11 +44,13 @@ export default function page() {
     return <div>Loading...</div>;
   }
 
+  let companyDataSize = Object.keys(companyData).length;
+
   return (
     <div className="individual-stock-page w-full flex flex-col justify-center items-center">
       <Navbar />
-      {companyData && (
-        <div className="stock-container w-full flex flex-col justify-center items-center mt-10 px-6 lg:px-20">
+      {companyDataSize > 1 ? (
+        <div className="stock-container w-full flex flex-col justify-center items-center mt-10 px-6 lg:px-20 max-width">
           <h1 className="font-bold text-2xl lg:text-4xl">
             Stock Details for {companyData.Symbol}
           </h1>
@@ -71,6 +73,13 @@ export default function page() {
               {companyData.PERatio}
             </p>
           </div>
+        </div>
+      ) : (
+        <div className="stock-error-container w-full flex flex-col justify-center items-center mt-16 px-6 lg:px-20">
+          <h1 className="font-bold text-2xl lg:text-4xl w-3/5">
+            Sorry! Details of {stockName} is not available at the moment, Try
+            again after sometime!
+          </h1>
         </div>
       )}
     </div>
